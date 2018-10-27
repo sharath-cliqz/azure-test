@@ -7,12 +7,18 @@ pool:
   vmImage: 'macOS 10.13'
 
 steps:
+- script: appium --version || true
+  displayName: 'check appium'
+
 - script: $(which npm) install -g appium wd
   displayName: 'npm install'
 
 - script: $(which pip) install -r requirements.txt
   displayName: 'pip install requirements'
-  
+
+- script: sdkmanager --help || true
+  displayName: 'check sdkmanager'
+
 - script: $(which sdkmanager) --list
   displayName: 'sdkmanager list'
 
