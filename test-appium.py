@@ -46,4 +46,4 @@ if __name__ == "__main__":
 		driver.quit()
 		appium.terminate()
 		emulator.terminate()
-		co("adb -s emulator-5554 emu kill".split(""))
+		co("adb -s emulator-5554 emu kill".split(" "))
