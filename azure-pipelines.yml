@@ -22,16 +22,16 @@ steps:
 - script: $ANDROID_HOME/tools/bin/avdmanager list avd
   displayName: 'list AVDs'
 
+- script: $ANDROID_HOME/emulator/emulator -avd Nexus5Emu
+  displayName: 'run AVD'
+
 - script: $(which npm) install -g appium wd
   displayName: 'npm install'
 
 - script: $(which pip) install -r requirements.txt
   displayName: 'pip install requirements'
 
-- script: emulator -avd Nexus5Emu
-  displayName: 'run AVD'
-
-- script: sleep 15 && adb devices
+- script: adb devices
   displayName: 'adb devices'
 
 - script: python test-appium.py
