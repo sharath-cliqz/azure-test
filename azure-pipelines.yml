@@ -13,8 +13,17 @@ steps:
 - script: $ANDROID_HOME/tools/bin/sdkmanager --list
   displayName: 'sdkmanager list'
 
-- script: pip2.7 -V && pip -V; python -m easy_install pip; python -V && pip -V
-  displayName: 'python and pip versions'
+- script: pip install virtualenv
+  displayName: 'Install Virtualenv'
+  
+- script: virtualenv -p python venv source <desired-path>/bin/activate
+  displayName: 'Create Python2 Virtualenv'
+  
+- script: source venv/bin/activate; python -V && pip -V
+  displayName: 'Create Python2 Virtualenv'
+  
+- script: python -V && pip -V
+  displayName: 'Create Python2 Virtualenv'
 
 - script: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-23;google_apis;x86"
   displayName: 'sdkmanager install system-image'
@@ -28,7 +37,7 @@ steps:
 - script: $(which npm) install -g appium wd
   displayName: 'npm install'
 
-- script: pip install -r requirements.txt
+- script: source venv/bin/activate; pip install -r requirements.txt
   displayName: 'pip install requirements'
 
 - script: python test-appium.py
