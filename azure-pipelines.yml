@@ -22,7 +22,7 @@ steps:
 - script: $ANDROID_HOME/tools/bin/avdmanager list avd
   displayName: 'list AVDs'
 
-- script: $ANDROID_HOME/emulator/emulator -avd Nexus5Emu
+- script: $ANDROID_HOME/emulator/emulator -avd Nexus5Emu &
   displayName: 'run AVD'
 
 - script: $(which npm) install -g appium wd
