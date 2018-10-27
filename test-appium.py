@@ -4,6 +4,9 @@ from multiprocessing import Process
 from subprocess import call
 from subprocess import check_output as co
 
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 desired_caps = {
     "platformName": "android",
     "appPackage": "com.ghostery.android.ghostery",
@@ -40,6 +43,8 @@ if __name__ == "__main__":
 		print(e)
 	finally:
 		driver.quit()
+		sleep(5)
 		appium.terminate()
+		sleep(5)
 		emulator.terminate()
 		exit()
