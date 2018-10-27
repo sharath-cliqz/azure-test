@@ -24,8 +24,8 @@ def checkDevice():
 
 if __name__ == "__main__":
 	try:
-		#emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
-		total = 120
+		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
+		total = 300
 		count = 1
 		while count < total:
 			if checkDevice:
