@@ -27,7 +27,7 @@ if __name__ == "__main__":
 		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
 		total = 120
 		count = 1
-		while count < timeout:
+		while count < total:
 			if checkDevice:
 				break
 			count += 1
