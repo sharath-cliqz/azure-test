@@ -31,7 +31,7 @@ if __name__ == "__main__":
 			if checkDevice:
 				break
 			count += 1
-		#appium = start_new_thread(call, (["appium"],))
+		appium = start_new_thread(call, (["appium"],))
 		driver = WD.Remote("http://localhost:4723/wd/hub", desired_caps)
 		sleep(15)
 		print(driver.page_source)
@@ -41,3 +41,4 @@ if __name__ == "__main__":
 		driver.quit()
 		#appium.conjugate()
 		#emulator.conjugate()
+		exit()
