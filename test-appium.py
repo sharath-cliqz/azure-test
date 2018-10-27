@@ -28,7 +28,7 @@ if __name__ == "__main__":
 		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
 		timeout = 2*60 #2 mins or 120 seconds
 		start_time = datetime.datetime.now().replace(microsecond=0)
-		while datetime.datetime.now().replace(microsecond=0) - start_timeme < timeout:
+		while datetime.datetime.now().replace(microsecond=0) - start_time < timeout:
 			if checkDevice:
 				break
 		appium = start_new_thread(call, (["appium"],))
