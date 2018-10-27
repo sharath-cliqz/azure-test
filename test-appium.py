@@ -17,6 +17,7 @@ desired_caps = {
 
 def checkDevice():
 	out = co(["adb", "devices"])
+	print(out)
 	if ("emulator" in out) or ("exus" in out):
 		return True
 	else:
@@ -24,6 +25,7 @@ def checkDevice():
 
 if __name__ == "__main__":
 	try:
+		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
 		timeout = 2*60 #2 mins or 120 seconds
 		start_time = now().replace(microsecond=0)
 		while now().replace(microsecond=0) - start_timeme < timeout:
@@ -38,3 +40,4 @@ if __name__ == "__main__":
 	finally:
 		driver.quit()
 		appium.conjugate()
+		emulator.conjugate()
