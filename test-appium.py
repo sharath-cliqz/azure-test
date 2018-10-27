@@ -1,6 +1,6 @@
 from appium import webdriver as WD
 from time import sleep
-from thread import start_new_thread
+from multiprocessing import Process
 from subprocess import call
 from subprocess import check_output as co
 
@@ -24,14 +24,16 @@ def checkDevice():
 
 if __name__ == "__main__":
 	try:
-		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
+		emulator = process.Process(target=call, args=(["/Users/vsts/Library/Android/sdk/emulator/emulator", "-avd", "Nexus5Emu"],))
+		emulator.start()
 		total = 300
 		count = 1
 		while count < total:
 			if checkDevice:
 				break
 			count += 1
-		appium = start_new_thread(call, (["appium"],))
+		appium = process.Process(target=call, args=(["appium"],))
+		appium.start()
 		sleep(20)
 		driver = WD.Remote("http://localhost:4723/wd/hub", desired_caps)
 		sleep(15)
@@ -40,7 +42,6 @@ if __name__ == "__main__":
 		print(e)
 	finally:
 		driver.quit()
-		#appium.conjugate()
-		#emulator.conjugate()
+		appium.terminate()
+		emulator.terminate()
 		exit()
-		raise "END PLEASE"
