@@ -28,8 +28,11 @@ steps:
 - script: $(which pip) install -r requirements.txt
   displayName: 'pip install requirements'
 
-- script: emulator Nexus5Emu
+- script: emulator -avd Nexus5Emu
   displayName: 'run AVD'
+
+- script: sleep 15 && adb devices
+  displayName: 'adb devices'
 
 - script: python test-appium.py
   displayName: 'test appium'
