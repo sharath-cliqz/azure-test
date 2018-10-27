@@ -24,14 +24,14 @@ def checkDevice():
 
 if __name__ == "__main__":
 	try:
-		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
+		#emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
 		total = 120
 		count = 1
 		while count < total:
 			if checkDevice:
 				break
 			count += 1
-		appium = start_new_thread(call, (["appium"],))
+		#appium = start_new_thread(call, (["appium"],))
 		driver = WD.Remote("http://localhost:4723/wd/hub", desired_caps)
 		sleep(15)
 		print(driver.page_source)
@@ -39,5 +39,5 @@ if __name__ == "__main__":
 		print(e)
 	finally:
 		driver.quit()
-		appium.conjugate()
-		emulator.conjugate()
+		#appium.conjugate()
+		#emulator.conjugate()
