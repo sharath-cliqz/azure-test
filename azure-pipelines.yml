@@ -7,14 +7,14 @@ pool:
   vmImage: 'macOS 10.13'
 
 steps:
-- script: adb devices || true
+- script: echo $ANDROID_HOME
   displayName: 'check adb devices'
 
-- script: emulator --help || true
-  displayName: 'check emulator'
+- script: which emulator
+  displayName: 'emulator location'
 
-- script: $(which sdkmanager) --list
-  displayName: 'sdkmanager list'
+- script: avdmanager --help || true
+  displayName: 'check avdmanager'
 
 - script: $(which npm) install -g appium wd
   displayName: 'npm install'
