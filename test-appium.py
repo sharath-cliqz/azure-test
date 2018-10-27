@@ -44,5 +44,6 @@ if __name__ == "__main__":
 		print(e)
 	finally:
 		driver.quit()
+		sleep(10)
 		co(["adb", "-e", "emu", "kill"])
 		sys.exit()
