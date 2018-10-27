@@ -14,24 +14,19 @@ desired_caps = {
     "noReset" : True
 }
 
-def checkDevice():
-	out = co(["adb", "devices"])
-	print(out)
-	if ("emulator" in out) or ("exus" in out):
-		return True
-	else:
-		return False
+def checkDeviceBootStatus():
+	return co(["adb", "shell", "getprop", "sys.boot_completed"]).strip()
 
 if __name__ == "__main__":
 	try:
 		emulator = Process(target=call, args=(["/Users/vsts/Library/Android/sdk/emulator/emulator", "-avd", "Nexus5Emu"],))
 		emulator.start()
-		total = 300
 		count = 1
-		while count < total:
-			if checkDevice:
+		while count < 600:
+			if checkDeviceBootStatus() == "1":
 				break
 			count += 1
+			sleep(1)
 		appium = Process(target=call, args=(["appium"],))
 		appium.start()
 		sleep(20)
