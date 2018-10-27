@@ -1,4 +1,4 @@
-from appium import webdriver as wd
+from appium import webdriver as WD
 from time import sleep
 from thread import start_new_thread
 from subprocess import call
