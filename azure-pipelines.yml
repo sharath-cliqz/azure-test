@@ -16,7 +16,7 @@ steps:
 - script: pip install virtualenv
   displayName: 'Install Virtualenv'
   
-- script: virtualenv -p python venv source <desired-path>/bin/activate
+- script: virtualenv -p python venv
   displayName: 'Create Python2 Virtualenv'
   
 - script: source venv/bin/activate; python -V && pip -V
