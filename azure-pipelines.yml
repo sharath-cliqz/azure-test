@@ -7,8 +7,11 @@ pool:
   vmImage: 'macOS 10.13'
 
 steps:
-- script: $ANDROID_HOME/tools/bin/avdmanager list avd
-  displayName: 'list AVDs'
+- script: $ANDROID_HOME/tools/bin/avdmanager list
+  displayName: 'avdmanager list'
+
+- script: $ANDROID_HOME/tools/bin/sdkmanager --list
+  displayName: 'sdkmanager list'
 
 - script: $ANDROID_HOME/tools/bin/avdmanager create avd --device "Nexus 5" --package "system-images;android-23;google_apis;x86" --abi google_apis/x86 --name "Nexus5Emu"
   displayName: 'create AVD'
