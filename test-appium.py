@@ -3,7 +3,6 @@ from time import sleep
 from thread import start_new_thread
 from subprocess import call
 from subprocess import check_output as co
-import datetime
 
 desired_caps = {
     "platformName": "android",
@@ -26,11 +25,12 @@ def checkDevice():
 if __name__ == "__main__":
 	try:
 		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
-		timeout = 2*60 #2 mins or 120 seconds
-		start_time = datetime.datetime.now().replace(microsecond=0)
-		while datetime.datetime.now().replace(microsecond=0) - start_time < timeout:
+		total = 120
+		count = 1
+		while count < timeout:
 			if checkDevice:
 				break
+			count += 1
 		appium = start_new_thread(call, (["appium"],))
 		driver = WD.Remote("http://localhost:4723/wd/hub", desired_caps)
 		sleep(15)
