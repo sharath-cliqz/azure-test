@@ -7,13 +7,13 @@ pool:
   vmImage: 'macOS 10.13'
 
 steps:
-- script: $ANRDOID_HOME/tools/bin/avdmanager list avd
+- script: $ANDROID_HOME/tools/bin/avdmanager list avd
   displayName: 'list AVDs'
 
-- script: $ANRDOID_HOME/tools/bin/avdmanager create avd --device "Nexus 5" --package "system-images;android-23;google_apis;x86" --abi google_apis/x86 --name "Nexus5Emu"
+- script: $ANDROID_HOME/tools/bin/avdmanager create avd --device "Nexus 5" --package "system-images;android-23;google_apis;x86" --abi google_apis/x86 --name "Nexus5Emu"
   displayName: 'create AVD'
 
-- script: $ANRDOID_HOME/tools/bin/avdmanager list avd
+- script: $ANDROID_HOME/tools/bin/avdmanager list avd
   displayName: 'list AVDs'
 
 - script: $(which npm) install -g appium wd
