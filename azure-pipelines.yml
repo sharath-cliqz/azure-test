@@ -7,20 +7,20 @@ pool:
   vmImage: 'macOS 10.13'
 
 steps:
-- script: appium --version || true
-  displayName: 'check appium'
+- script: adb devices || true
+  displayName: 'check adb devices'
+
+- script: emulator --help || true
+  displayName: 'check emulator'
+
+- script: $(which sdkmanager) --list
+  displayName: 'sdkmanager list'
 
 - script: $(which npm) install -g appium wd
   displayName: 'npm install'
 
 - script: $(which pip) install -r requirements.txt
   displayName: 'pip install requirements'
-
-- script: sdkmanager --help || true
-  displayName: 'check sdkmanager'
-
-- script: $(which sdkmanager) --list
-  displayName: 'sdkmanager list'
 
 - script: avdmanager create avd --device "Nexus 5" --package "system-images;android-23;google_apis;x86" --abi google_apis/x86 --name "Nexus5Emu"
   displayName: 'create AVD'
