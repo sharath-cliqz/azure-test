@@ -25,7 +25,7 @@ steps:
 - script: $(which npm) install -g appium wd
   displayName: 'npm install'
 
-- script: $(which pip) install -r requirements.txt
+- script: python -m pip install -r requirements.txt
   displayName: 'pip install requirements'
 
 - script: python test-appium.py
