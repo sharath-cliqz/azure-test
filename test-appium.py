@@ -3,7 +3,7 @@ from time import sleep
 from thread import start_new_thread
 from subprocess import call
 from subprocess import check_output as co
-from datetime.datetime import now
+import datetime
 
 desired_caps = {
     "platformName": "android",
@@ -27,8 +27,8 @@ if __name__ == "__main__":
 	try:
 		emulator = start_new_thread(call, (["$ANDROID_HOME/emulator/emulator", "-avd", "Nexus5Emu"],))
 		timeout = 2*60 #2 mins or 120 seconds
-		start_time = now().replace(microsecond=0)
-		while now().replace(microsecond=0) - start_timeme < timeout:
+		start_time = datetime.datetime.now().replace(microsecond=0)
+		while datetime.datetime.now().replace(microsecond=0) - start_timeme < timeout:
 			if checkDevice:
 				break
 		appium = start_new_thread(call, (["appium"],))
