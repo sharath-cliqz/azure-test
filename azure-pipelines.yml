@@ -21,9 +21,6 @@ steps:
   
 - script: source venv/bin/activate; python -V && pip -V
   displayName: 'Create Python2 Virtualenv'
-  
-- script: python -V && pip -V
-  displayName: 'Create Python2 Virtualenv'
 
 - script: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-23;google_apis;x86"
   displayName: 'sdkmanager install system-image'
@@ -40,5 +37,5 @@ steps:
 - script: source venv/bin/activate; pip install -r requirements.txt
   displayName: 'pip install requirements'
 
-- script: source venv/bin/activate; python test-appium.py
+- script: source venv/bin/activate; $ANDROID_HOME/emulator/emulator -avd Nexus5Emu; appium &; sleep 15; python test-appium.py
   displayName: 'test appium'
