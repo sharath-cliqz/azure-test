@@ -15,7 +15,10 @@ desired_caps = {
 }
 
 def checkDeviceBootStatus():
-	return co(["adb", "shell", "getprop", "sys.boot_completed"]).strip()
+	try:
+		return co(["adb", "shell", "getprop", "sys.boot_completed"]).strip()
+	except:
+		return 0
 
 if __name__ == "__main__":
 	try:
