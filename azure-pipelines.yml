@@ -13,6 +13,9 @@ steps:
 - script: $ANDROID_HOME/tools/bin/sdkmanager --list
   displayName: 'sdkmanager list'
 
+- script: pip2.7 -V && pip -V; python -m easy_install pip; python -V && pip -V
+  displayName: 'python and pip versions'
+
 - script: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-23;google_apis;x86"
   displayName: 'sdkmanager install system-image'
 
@@ -28,5 +31,5 @@ steps:
 - script: pip install -r requirements.txt
   displayName: 'pip install requirements'
 
-- script: python3.7 test-appium.py
+- script: python test-appium.py
   displayName: 'test appium'
