@@ -24,7 +24,7 @@ def checkDevice():
 
 if __name__ == "__main__":
 	try:
-		emulator = process.Process(target=call, args=(["/Users/vsts/Library/Android/sdk/emulator/emulator", "-avd", "Nexus5Emu"],))
+		emulator = Process(target=call, args=(["/Users/vsts/Library/Android/sdk/emulator/emulator", "-avd", "Nexus5Emu"],))
 		emulator.start()
 		total = 300
 		count = 1
@@ -32,7 +32,7 @@ if __name__ == "__main__":
 			if checkDevice:
 				break
 			count += 1
-		appium = process.Process(target=call, args=(["appium"],))
+		appium = Process(target=call, args=(["appium"],))
 		appium.start()
 		sleep(20)
 		driver = WD.Remote("http://localhost:4723/wd/hub", desired_caps)
