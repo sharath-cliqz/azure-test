@@ -39,13 +39,11 @@ if __name__ == "__main__":
 		sleep(20)
 		driver = WD.Remote("http://localhost:4723/wd/hub", desired_caps)
 		sleep(15)
-		print(driver.page_source)
+		print((driver.page_source).replace(">", ">\n"))
 	except Exception as e:
 		print(e)
 	finally:
 		driver.quit()
-		sleep(5)
 		appium.terminate()
-		sleep(5)
 		emulator.terminate()
-		exit()
+		co("adb -s emulator-5554 emu kill".split(""))
