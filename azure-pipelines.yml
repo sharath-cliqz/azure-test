@@ -7,12 +7,6 @@ pool:
   vmImage: 'macOS 10.13'
 
 steps:
-- script: $ANDROID_HOME/tools/bin/avdmanager list
-  displayName: 'avdmanager list'
-
-- script: $ANDROID_HOME/tools/bin/sdkmanager --list
-  displayName: 'sdkmanager list'
-
 - script: pip install virtualenv
   displayName: 'Install Virtualenv'
   
@@ -36,6 +30,9 @@ steps:
 
 - script: source venv/bin/activate; pip install -r requirements.txt
   displayName: 'pip install requirements'
+
+- bash: appium &
+  displayName: 'Start Appium'
 
 - script: source venv/bin/activate; python test-appium.py
   displayName: 'test appium'
