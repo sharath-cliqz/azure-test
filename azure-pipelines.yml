@@ -37,5 +37,6 @@ steps:
     sleep 5
     adb devices
     ps ax | grep Nexus5Emu
+    kill 914
     echo "Done"
   displayName: 'test appium'
