@@ -26,17 +26,17 @@ def checkDeviceBootStatus():
 
 if __name__ == "__main__":
 	try:
-		emulator = Process(target=call, args=(["/Users/vsts/Library/Android/sdk/emulator/emulator", "-avd", "Nexus5Emu"],))
-		emulator.start()
+		#emulator = Process(target=call, args=(["/Users/vsts/Library/Android/sdk/emulator/emulator", "-avd", "Nexus5Emu"],))
+		#emulator.start()
 		count = 1
 		while count < 600:
 			if checkDeviceBootStatus() == "1":
 				break
 			count += 1
 			sleep(1)
-		appium = Process(target=call, args=(["appium"],))
-		appium.start()
-		sleep(20)
+		#appium = Process(target=call, args=(["appium"],))
+		#appium.start()
+		sleep(10)
 		driver = WD.Remote("http://localhost:4723/wd/hub", desired_caps)
 		sleep(15)
 		print((driver.page_source).replace(">", ">\n"))
@@ -44,6 +44,6 @@ if __name__ == "__main__":
 		print(e)
 	finally:
 		driver.quit()
-		sleep(10)
-		co(["adb", "-e", "emu", "kill"])
-		sys.exit()
+		#sleep(10)
+		#co(["adb", "-e", "emu", "kill"])
+		#sys.exit()
