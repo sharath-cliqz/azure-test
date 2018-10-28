@@ -33,10 +33,9 @@ steps:
     python test-appium.py
     echo "Quitting Processes"
     pkill -f appium
-    pkill -f emulator
-    kill $(ps -A | grep -m1 emulator | awk '{print \$1}')
+    pkill -f Nexus5Emu
     sleep 5
     adb devices
-    ps ax
+    ps ax | grep Nexus5Emu
     echo "Done"
   displayName: 'test appium'
