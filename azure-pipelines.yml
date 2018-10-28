@@ -32,8 +32,11 @@ steps:
     echo "Started Appium"
     python test-appium.py
     echo "Quitting Processes"
-    adb -e emu kill
     pkill -f appium
     pkill -f emulator
+    kill $(ps -A | grep -m1 emulator | awk '{print \$1}')
+    sleep 5
+    adb devices
+    ps ax
     echo "Done"
   displayName: 'test appium'
