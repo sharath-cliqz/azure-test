@@ -38,7 +38,7 @@ steps:
     sleep 15
     adb devices
     adb kill-server
-    kill $(cat emu.pid)
+    kill -9 $(cat emu.pid)
     ps ax | grep Nexus5Emu
     echo "Done"
   displayName: 'test appium'
