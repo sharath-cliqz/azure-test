@@ -6,14 +6,13 @@
 pool:
   vmImage: 'macOS 10.13'
 
-steps:
-- script: pip install virtualenv
-  displayName: 'Install Virtualenv'
-  
-- script: virtualenv -p python venv
-  displayName: 'Create Python2 Virtualenv'
-  
-- script: source venv/bin/activate; python -V && pip -V
+steps:  
+- bash: |
+    pip install virtualenv
+    virtualenv -p python venv
+    source venv/bin/activate
+    python -V && pip -V
+    pip install -r requirements.txt
   displayName: 'Create Python2 Virtualenv'
 
 - script: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-23;google_apis;x86"
@@ -22,14 +21,8 @@ steps:
 - script: $ANDROID_HOME/tools/bin/avdmanager create avd --device "Nexus 5" --package "system-images;android-23;google_apis;x86" --abi google_apis/x86 --name "Nexus5Emu"
   displayName: 'create AVD'
 
-- script: $ANDROID_HOME/tools/bin/avdmanager list avd
-  displayName: 'list AVDs'
-
 - script: $(which npm) install -g appium wd
   displayName: 'npm install'
-
-- script: source venv/bin/activate; pip install -r requirements.txt
-  displayName: 'pip install requirements'
 
 - bash: |
     source venv/bin/activate
@@ -38,5 +31,9 @@ steps:
     appium &
     echo "Started Appium"
     python test-appium.py
-    exit 1
+    echo "Quitting Processes"
+    adb -e emu kill
+    pkill -f appium
+    pkill -f emulator
+    echo "Done"
   displayName: 'test appium'
