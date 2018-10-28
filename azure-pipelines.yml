@@ -31,8 +31,12 @@ steps:
 - script: source venv/bin/activate; pip install -r requirements.txt
   displayName: 'pip install requirements'
 
-- bash: appium &
-  displayName: 'Start Appium'
-
-- script: source venv/bin/activate; python test-appium.py
+- bash: |
+    source venv/bin/activate
+    $ANDROID_HOME/emulator/emulator -avd Nexus5Emu &
+    echo "Started Emu"
+    appium &
+    echo "Started Appium"
+    python test-appium.py
+    exit 1
   displayName: 'test appium'
