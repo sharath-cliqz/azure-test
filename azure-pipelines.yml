@@ -27,16 +27,18 @@ steps:
 - bash: |
     source venv/bin/activate
     $ANDROID_HOME/emulator/emulator -avd Nexus5Emu &
-    echo "Started Emu"
+    emuID = $!
+    echo "Started Emu with pid: $emuID"
     appium &
-    echo "Started Appium"
+    appiumID = $!
+    echo "Started Appium with pid: $appiumID"
     python test-appium.py
     echo "Quitting Processes"
-    pkill -f appium
-    pkill -f Nexus5Emu
+    kill $appiumID
+    kill $emuID
     sleep 5
     adb devices
+    adb server-kill
     ps ax | grep Nexus5Emu
-    kill 914
     echo "Done"
   displayName: 'test appium'
