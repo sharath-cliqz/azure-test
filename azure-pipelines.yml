@@ -27,10 +27,10 @@ steps:
 - bash: |
     source venv/bin/activate
     $ANDROID_HOME/emulator/emulator -avd Nexus5Emu &
-    emuID = $!
+    export emuID=$!
     echo "Started Emu with pid: $emuID"
     appium &
-    appiumID = $!
+    export appiumID=$!
     echo "Started Appium with pid: $appiumID"
     python test-appium.py
     echo "Quitting Processes"
